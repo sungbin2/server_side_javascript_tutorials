@@ -40,7 +40,7 @@ module.exports = function(passport){
         salt:salt,
         displayName:req.body.displayName
       };
-      var userid = 'local:'+req.body.username;
+      var userid = {authId:'local:'+req.body.username};
       var sql = 'SELECT authId FROM users'
       conn.query(sql, function(err, results){
         // console.log(results);
