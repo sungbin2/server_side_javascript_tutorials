@@ -45,10 +45,10 @@ module.exports = function(passport){
       conn.query(sql, function(err, results){
         // console.log(results);
         var authid = JSON.stringify(results[0]);
-        if (userid == authid){
+        if (JSON.stringify(userid) == authid){
           res.send("id duplicate");
         } else {
-          console.log(userid,JSON.stringify(results[0]),authid);
+          console.log(JSON.stringify(userid),JSON.stringify(results[0]),authid);
           console.log("sucess");
         }
 
