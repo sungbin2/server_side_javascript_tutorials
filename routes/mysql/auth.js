@@ -43,33 +43,26 @@ module.exports = function(passport){
       var userid = {authId:'local:'+req.body.username};
       var sql = 'SELECT authId FROM users'
       conn.query(sql, function(err, results){
-        // console.log(results);
         var authid = JSON.stringify(results[0]);
         if (JSON.stringify(userid) == authid){
           res.send("id duplicate");
         } else {
-          console.log(JSON.stringify(userid),JSON.stringify(results[0]),authid);
-          console.log("sucess");
-        }
+          var sql = 'INSERT INTO users SET ?';
+            conn.query(sql, user, function(err, results){
+              if(err){
+                console.log(err);
+                res.status(500);
+              } else {
+                req.login(user, function(err){
+                  req.session.save(function(){
+                    res.redirect('/welcome');
+                  });
+                });
+              }
+            });
+        };
 
 
-        // if (user.authID == results){
-        //   res.redirect('/welcome');
-        // } else {
-        //   var sql = 'INSERT INTO users SET ?';
-        //   conn.query(sql, user, function(err, results){
-        //     if(err){
-        //       console.log(err);
-        //       res.status(500);
-        //     } else {
-        //       req.login(user, function(err){
-        //         req.session.save(function(){
-        //           res.redirect('/welcome');
-        //         });
-        //       });
-        //     }
-        //   });
-        // }
       });
 
     });
