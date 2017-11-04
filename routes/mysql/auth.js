@@ -40,20 +40,27 @@ module.exports = function(passport){
         salt:salt,
         displayName:req.body.displayName
       };
-      var sql = 'INSERT INTO users SET ?';
-      conn.query(sql, user, function(err, results){
-        if(err){
-          console.log(err);
-          console.log("중복입니다.")
-          res.status(500);
+      var sql = 'SELECT authId FROM users'
+      conn.query(sql, function(err, authID){
+        if (user.authID == authID){
+          res.redirect('/welcome');
         } else {
-          req.login(user, function(err){
-            req.session.save(function(){
-              res.redirect('/welcome');
-            });
+          var sql = 'INSERT INTO users SET ?';
+          conn.query(sql, user, function(err, results){
+            if(err){
+              console.log(err);
+              res.status(500);
+            } else {
+              req.login(user, function(err){
+                req.session.save(function(){
+                  res.redirect('/welcome');
+                });
+              });
+            }
           });
         }
       });
+
     });
   });
   route.get('/register', function(req, res){
