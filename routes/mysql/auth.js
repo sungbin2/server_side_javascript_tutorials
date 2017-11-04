@@ -41,24 +41,25 @@ module.exports = function(passport){
         displayName:req.body.displayName
       };
       var sql = 'SELECT authId FROM users'
-      conn.query(sql, function(err, authID){
-        if (user.authID == authID){
-          res.redirect('/welcome');
-        } else {
-          var sql = 'INSERT INTO users SET ?';
-          conn.query(sql, user, function(err, results){
-            if(err){
-              console.log(err);
-              res.status(500);
-            } else {
-              req.login(user, function(err){
-                req.session.save(function(){
-                  res.redirect('/welcome');
-                });
-              });
-            }
-          });
-        }
+      conn.query(sql, function(err, results){
+        console.log(results);
+        // if (user.authID == results){
+        //   res.redirect('/welcome');
+        // } else {
+        //   var sql = 'INSERT INTO users SET ?';
+        //   conn.query(sql, user, function(err, results){
+        //     if(err){
+        //       console.log(err);
+        //       res.status(500);
+        //     } else {
+        //       req.login(user, function(err){
+        //         req.session.save(function(){
+        //           res.redirect('/welcome');
+        //         });
+        //       });
+        //     }
+        //   });
+        // }
       });
 
     });
