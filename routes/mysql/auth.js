@@ -48,7 +48,7 @@ module.exports = function(passport){
         if (userid == authid){
           res.send("id duplicate");
         } else {
-          console.log(userid,authid);
+          console.log(userid,JSON.stringify(results),JSON.stringify(authid));
           console.log("sucess");
         }
 
