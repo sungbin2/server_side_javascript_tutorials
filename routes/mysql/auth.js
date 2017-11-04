@@ -42,7 +42,14 @@ module.exports = function(passport){
       };
       var sql = 'SELECT authId FROM users'
       conn.query(sql, function(err, results){
-        console.log(results);
+        // console.log(results);
+        if (user.authID == results){
+          res.send("id duplicate")
+        } else {
+          console.log("sucess");
+        }
+
+
         // if (user.authID == results){
         //   res.redirect('/welcome');
         // } else {

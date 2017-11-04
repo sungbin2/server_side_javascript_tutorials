@@ -80,7 +80,7 @@ module.exports = function(){
       });
     });
   });
-  route.post('/topic/:id/delete', function(req, res){
+  route.post('/:id/delete', function(req, res){
     var id = req.params.id;
     var sql = 'DELETE FROM topic WHERE id=?';
     conn.query(sql, [id], function(err, result){
