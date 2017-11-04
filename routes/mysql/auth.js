@@ -44,6 +44,7 @@ module.exports = function(passport){
       conn.query(sql, user, function(err, results){
         if(err){
           console.log(err);
+          console.log("중복입니다.")
           res.status(500);
         } else {
           req.login(user, function(err){
