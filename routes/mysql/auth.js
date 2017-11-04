@@ -44,8 +44,9 @@ module.exports = function(passport){
       conn.query(sql, function(err, results){
         // console.log(results);
         if (user.authID == results[0]){
-          res.send("id duplicate")
+          res.send("id duplicate");
         } else {
+          console.log(results[0],user.authID);
           console.log("sucess");
         }
 
