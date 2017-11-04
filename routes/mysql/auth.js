@@ -40,13 +40,14 @@ module.exports = function(passport){
         salt:salt,
         displayName:req.body.displayName
       };
+      var userid = {'local:' +req.body.username};
       var sql = 'SELECT authId FROM users'
       conn.query(sql, function(err, results){
         // console.log(results);
-        if (user.authID == results[0]){
+        if (userid == results[0]){
           res.send("id duplicate");
         } else {
-          console.log(results[0],user.authID);
+          console.log(results[0],userid);
           console.log("sucess");
         }
 
