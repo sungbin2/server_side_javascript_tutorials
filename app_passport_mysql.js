@@ -20,7 +20,9 @@ app.get('/welcome', function(req, res){
 
 var auth = require('./routes/mysql/auth')(passport);
 app.use('/auth/', auth);
+var topic = require('./routes/mysql/topic')();
+app.use('/topic/', topic);
 
-app.listen(3003, function(){
-  console.log('Connected 3003 port!!!');
+app.listen(80, function(){
+  console.log('Connected 80 port!!!');
 });
