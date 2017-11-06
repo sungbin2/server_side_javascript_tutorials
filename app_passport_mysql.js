@@ -7,7 +7,7 @@ app.get('/', function(req, res){
 
 app.get('/welcome', function(req, res){
   if(req.user && req.user.displayName) {
-    res.send(`
+    res.send(`<meta charset='utf-8' name="viewport" content="initial-scale=1, maximum-scale=1")>
       <h1>Hello, ${req.user.displayName}</h1>
       <a href="/auth/logout">logout</a>
     `);
