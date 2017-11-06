@@ -33,39 +33,27 @@ module.exports = function(passport){
   );
   route.post('/register', function(req, res){
     hasher({password:req.body.password}, function(err, pass, salt, hash){
-      var user = {
-        authId:'local:'+req.body.username,
-        username:req.body.username,
-        password:hash,
-        salt:salt,
-        displayName:req.body.displayName
-      };
-      var userid = {authId:'local:'+req.body.username};
-      var sql = 'SELECT authId FROM users'
-      conn.query(sql, function(err, results){
-        var authid = JSON.stringify(results[0]);
-        if (JSON.stringify(userid) == authid){
-          res.send("id duplicate");
-        } else {
+          var user = {
+            authId:'local:'+req.body.username,
+            username:req.body.username,
+            password:hash,
+            salt:salt,
+            displayName:req.body.displayName
+          };
           var sql = 'INSERT INTO users SET ?';
-            conn.query(sql, user, function(err, results){
-              if(err){
-                console.log(err);
-                res.status(500);
-              } else {
+          conn.query(sql, [user], function(err, results){
+            if(err){
+              console.log(err);
+              return;
+            } else {
                 req.login(user, function(err){
                   req.session.save(function(){
                     res.redirect('/welcome');
                   });
                 });
-              }
-            });
-        };
-
-
+            }
+          });
       });
-
-    });
   });
   route.get('/register', function(req, res){
     var sql = 'SELECT id,title FROM topic';

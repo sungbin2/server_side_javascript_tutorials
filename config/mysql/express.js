@@ -5,9 +5,12 @@ module.exports = function(){
   var bodyParser = require('body-parser');
 
   var app = express();
+  var http = require('http').Server(app);
   app.set('views', './views/mysql');
   app.set('view engine', 'jade');
-  app.use(bodyParser.urlencoded({ extended: false }));
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({extended:true}))
+  //app.use(bodyParser.urlencoded({ extended: false }));
   app.use(session({
     secret: '1234DSFs@adf1234!@#$asd',
     resave: false,
