@@ -19,7 +19,7 @@ function sendAjax(url, data){
       document.querySelector(".result").innerHTML = 'Email이 중복되었습니다.';
       return;
     } else {
-      document.querySelector(".result").innerHTML = '기도편지 동역자가 되셨습니다.';
+      document.querySelectosur(".result").innerHTML = '기도편지 동역자가 되셨습니다.';
       }
   });
 }
