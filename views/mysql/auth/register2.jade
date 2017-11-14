@@ -1,0 +1,17 @@
+extends ../layout
+block content
+  form(action='/auth/register', method='post')
+    p
+      div(style='float:left')
+        input(id='sw' type='text', name='username', placeholder='username', required )
+      div(class='result') x
+    p
+      input(type='password', name='password', placeholder='password', required)
+    p
+      input(type='text', name='displayName', placeholder='displayName' required )
+    p
+      input(id='ok' type='button' value='제출')
+
+  script(src="https://code.jquery.com/jquery-1.12.4.js")
+  script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+  script(src="/script/script.js")

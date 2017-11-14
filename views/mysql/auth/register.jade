@@ -1,59 +1,48 @@
-extends ../layout
-block content
-  form(action='/auth/register', method='post')
-    p
-      div(style='float:left')
-        input(id='sw' type='text', name='username', placeholder='username', required )
-      div(class='result') x
-    p
-      input(type='password', name='password', placeholder='password', required)
-    p
-      input(type='text', name='displayName', placeholder='displayName' required )
-    p
-      input(id='ok' type='button' value='제출')
+doctype html
+html
+  head
+    meta(name='viewport', content='initial-scale=1, width=device-width')
+    link(rel='stylesheet', href='/css/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300', rel='stylesheet')
+    script(src='https://code.jquery.com/jquery-2.2.4.min.js', integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=', crossorigin='anonymous')
+    link(rel='stylesheet', href='/css/fontello/css/fontello.css')
+  body
+    article
+      .content
+        section.scene.back
+          header(style="top: 200px")
+            h1 REGISTER
+            |  Nodejs login system
+            form(action='/auth/register', method='post')
+              div.ri
+                p
+                  input(autocomplete='off' id='sw' type='text', name='username', placeholder='username', required )
+                p
+                  input(autocomplete='off' type='password', name='password', placeholder='password', required)
+                p
+                  input(autocomplete='off' type='text', name='displayName', placeholder='displayName' required )
+                p
+                  input(id='ok' type='submit' value='등록하기')
+                div(class='item result') &#xe803
 
-  script(src="https://code.jquery.com/jquery-1.12.4.js")
-  script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
-  script.
-    function sendAjax(url, data){
+            script(src="https://code.jquery.com/jquery-1.12.4.js")
+            script(src="https://code.jquery.com/ui/1.12.1/jquery-ui.js")
+            script(src="/script/script.js")
 
-      // 입력값을 변수에 담고 문자열 형태로 변환
-      var data = {'email' : data};
-      data = JSON.stringify(data);
-
-      // content-type을 설정하고 데이터 송신
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST', url);
-      xhr.setRequestHeader('Content-type', "application/json");
-      xhr.send(data);
-
-      // 데이터 수신이 완료되면 표시
-      xhr.addEventListener('load', function(){
-        console.log(xhr.responseText);
-        var result = JSON.parse(xhr.responseText);
-        console.log(result.result);
-        if(result.result !== 'ok') {
-          document.querySelector(".result").innerHTML = 'x중복아이디입니다.';
-          document.querySelector("#ok").type = 'button' ;
-          return;
-        } else {
-          document.querySelector(".result").innerHTML = 'o';
-          document.querySelector("#ok").type = 'submit' ;
-        }
-      });
-    }
-    $(document).ready(function(){
-      $('#sw').keyup(function(){
-        var word = $("#sw").val();
-
-          if(word != ''){
-            var inputdata = document.forms[0].elements[0].value;
-              // sendAjax 함수를 만들고 URL과 data를 전달
-            sendAjax('/ajax_send_email', inputdata)
-          } else {
-            document.querySelector(".result").innerHTML = 'x';
-            document.querySelector("#ok").type = 'button' ;
-          }
-          ;
-      });
-    });
+  .control
+    nav
+      ul
+        li
+          a(href='/auth/login') login
+        li
+          a(href='/topic') page1
+        li
+          a(href='page2.html') page2
+    ul.player
+      li
+        a.play.icon-expand-right(href='#play')
+          span play
+      li
+        a.pause.icon-pause(href='#stop')
+          span pause
+  script(src='/script/page.js')

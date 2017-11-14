@@ -16,24 +16,21 @@ function sendAjax(url, data){
     var result = JSON.parse(xhr.responseText);
     console.log(result.result);
     if(result.result !== 'ok') {
-      document.querySelector(".result").innerHTML = 'x중복아이디입니다.';
+      document.querySelector(".result").innerHTML = 'Email이 중복되었습니다.';
       return;
     } else {
-      document.querySelector(".result").innerHTML = 'o';
-    }
+      document.querySelector(".result").innerHTML = '기도편지 동역자가 되셨습니다.';
+      }
   });
 }
-$(document).ready(function(){
-  $('#sw').keyup(function(){
-    var word = $("#sw").val();
+$('#sw').click(function(){
+    var word = document.forms[0].elements[0].value;
 
-      if(word != ''){
-        var inputdata = document.forms[0].elements[0].value;
-          // sendAjax 함수를 만들고 URL과 data를 전달
-        sendAjax('http://127.0.0.1/ajax_send_email', inputdata)
-      } else {
-        document.querySelector(".result").innerHTML = 'x';
-      }
-      ;
-  });
+    if(word != ''){
+      var inputdata = document.forms[0].elements[0].value;
+        // sendAjax 함수를 만들고 URL과 data를 전달
+      sendAjax('/ajax_send_email', inputdata)
+    } else {
+      document.querySelector(".result").innerHTML = '동역자 정보를 알려주세요.';
+    };
 });

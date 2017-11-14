@@ -1,10 +1,40 @@
-extends ../layout
-block content
-  form(action='/auth/login', method='post')
-    p
-      input(type='text', name='username', placeholder='username')
-    p
-      input(type='password', name='password', placeholder='password')
-    p
-      input(type='submit')
-  a(href='/auth/facebook') facebook
+doctype html
+html
+  head
+    meta(name='viewport', content='initial-scale=1, width=device-width')
+    link(rel='stylesheet', href='/css/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300', rel='stylesheet')
+    script(src='https://code.jquery.com/jquery-2.2.4.min.js', integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=', crossorigin='anonymous')
+    link(rel='stylesheet', href='/css/fontello/css/fontello.css')
+  body
+    article
+      .content
+        section.scene.back
+          header
+            h1 LOGIN
+            |  Nodejs login system
+            form(action='/auth/login', method='post')
+              p
+                input(type='text', name='username', placeholder='username')
+              p
+                input(type='password', name='password', placeholder='password')
+              p(class='regsiter')
+                input(type='submit')
+                a(href='/auth/register' ) 회원가입
+    .control
+      nav
+        ul
+          li
+            a(href='/auth/login') login
+          li
+            a(href='/topic') page1
+          li
+            a(href='page2.html') page2
+      ul.player
+        li
+          a.play.icon-expand-right(href='#play')
+            span play
+        li
+          a.pause.icon-pause(href='#stop')
+            span pause
+    script(src='/script/page.js')

@@ -1,9 +1,40 @@
 doctype html
 html
   head
-    meta(charset='utf-8' name="viewport" content="initial-scale=1, maximum-scale=1")
+    meta(name='viewport', content='initial-scale=1, width=device-width')
+    link(rel='stylesheet', href='/css/style.css')
+    link(href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300', rel='stylesheet')
+    script(src='https://code.jquery.com/jquery-2.2.4.min.js', integrity='sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=', crossorigin='anonymous')
+    link(rel='stylesheet', href='/css/fontello/css/fontello.css')
   body
-    h1 WELCOME Sungbin2's HOMEPAGE
-
-    h2
-      a(href='/welcome') Click to welcome page
+    article
+      .content
+        section.scene.one
+          header
+            h1 Sungbin2
+            | Web developer
+        section.scene.two
+          header
+            h1 Project1
+            |  Nodejs Web Server
+        section.scene.three
+          header
+            h1 Project2
+            |  Javascript Webpage
+    .control
+      nav
+        ul
+          li
+            a(href='/auth/login') login
+          li
+            a(href='/topic') page1
+          li
+            a(href='/auth/page2') page2
+      ul.player
+        li
+          a.play.icon-expand-right(href='#play')
+            span play
+        li
+          a.pause.icon-pause(href='#stop')
+            span pause
+    script(src='/script/page.js')
